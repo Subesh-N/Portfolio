@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SUBESH KUMAR N | Software Developer</title>
+  <style>
+    /* === THEME & RESET (same as before) === */
+    :root {
+      --bg: #050816;
+      --bg-alt: #0b1020;
+      --card: #0f172a;
+      --accent: #6366f1;
+      --accent-soft: rgba(99, 102, 241, 0.12);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: #1f2937;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --radius-pill: 999px;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.9);
+      --shadow-chip: 0 8px 20px rgba(15, 23, 42, 0.8);
+      --transition-fast: 180ms ease-out;
+      --transition-med: 220ms ease-out;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+      background: radial-gradient(circle at top, #1d2338 0, #050816 45%, #020617 100%);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(to bottom, rgba(5, 8, 22, 0.96), rgba(5, 8, 22, 0.8));
+      border-bottom: 1px solid rgba(31, 41, 55, 0.9);
+    }
+
+    .navbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 12px;
+      background: radial-gradient(circle at 20% 0, #818cf8, #4f46e5, #1f2937);
+      box-shadow: 0 10px 25px rgba(55, 65, 81, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-name {
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      font-size: 0.95rem;
+    }
+
+    .logo-role {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      font-size: 0.85rem;
+    }
+
+    .nav-link {
+      position: relative;
+      color: var(--muted);
+      padding-bottom: 0.15rem;
+      transition: color var(--transition-fast);
+    }
+
+    .nav-link:hover {
+      color: var(--text);
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -0.35rem;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #6366f1, #22d3ee);
+      transition: width var(--transition-fast);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #6366f1, #22c55e);
+      color: #f9fafb;
+      font-size: 0.8rem;
+      font-weight: 500;
+      box-shadow: 0 12px 25px rgba(79, 70, 229, 0.6);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), filter var(--transition-fast);
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 40px rgba(79, 70, 229, 0.7);
+      filter: brightness(1.03);
+    }
+
+    .nav-toggle {
+      display: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: rgba(15, 23, 42, 0.9);
+      color: #e5e7eb;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 3.8rem 0 3.5rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.3fr);
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.18rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.2);
+    }
+
+    .hero-title {
+      font-size: clamp(2.1rem, 4vw, 3.1rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.7rem;
+    }
+
+    .hero-title span {
+      background: linear-gradient(120deg, #818cf8, #22d3ee, #4ade80);
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      color: var(--muted);
+      max-width: 34rem;
+      font-size: 0.96rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .badge {
+      padding: 0.22rem 0.7rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.78rem;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: radial-gradient(circle at 0 0, rgba(148, 163, 184, 0.12), rgba(15, 23, 42, 0.96));
+      color: #e5e7eb;
+      box-shadow: var(--shadow-chip);
+    }
+
+    .badge-ghost {
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--muted);
+      box-shadow: none;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+    }
+
+    .btn {
+      padding: 0.55rem 1.1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(75, 85, 99, 0.9);
+      background: rgba(15, 23, 42, 0.9);
+      font-size: 0.84rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      cursor: pointer;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #6366f1, #22c55e);
+      border-color: rgba(148, 163, 184, 0.9);
+      color: #f9fafb;
+      box-shadow: 0 18px 45px rgba(37, 99, 235, 0.75);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 22px 55px rgba(37, 99, 235, 0.8);
+    }
+
+    .btn-outline {
+      color: var(--muted);
+    }
+
+    .btn-outline:hover {
+      border-color: #6366f1;
+      color: #e5e7eb;
+      background: rgba(15, 23, 42, 0.9);
+      transform: translateY(-1px);
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.9);
+    }
+
+    .btn span.icon {
+      font-size: 0.8rem;
+    }
+
+    /* Hero card (right) */
+    .hero-panel {
+      background: radial-gradient(circle at top left, rgba(129, 140, 248, 0.32), rgba(15, 23, 42, 0.96));
+      border-radius: 22px;
+      border: 1px solid rgba(75, 85, 99, 0.9);
+      padding: 1.35rem 1.3rem;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-panel::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0 0, rgba(129, 140, 248, 0.25) 0, transparent 45%),
+        radial-gradient(circle at 100% 0, rgba(45, 212, 191, 0.25) 0, transparent 45%);
+      opacity: 0.45;
+      pointer-events: none;
+    }
+
+    .hero-panel-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .pill-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .pill-row span {
+      padding: 0.16rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+    }
+
+    .highlight-card {
+      background: rgba(15, 23, 42, 0.94);
+      border-radius: 16px;
+      padding: 0.9rem;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      margin-bottom: 0.75rem;
+    }
+
+    .highlight-title {
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+
+    .highlight-sub {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .highlight-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .tag {
+      font-size: 0.72rem;
+      padding: 0.14rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      color: #cbd5f5;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+    }
+
+    .stat-box {
+      flex: 1;
+      background: rgba(15, 23, 42, 0.94);
+      border-radius: 12px;
+      padding: 0.5rem 0.7rem;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      font-size: 0.78rem;
+    }
+
+    .stat-number {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .stat-label {
+      color: var(--muted);
+      font-size: 0.74rem;
+    }
+
+    section {
+      padding: 1.8rem 0 0;
+    }
+
+    .section-header {
+      margin-bottom: 1rem;
+    }
+
+    .section-eyebrow {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.25rem;
+    }
+
+    .section-subtitle {
+      font-size: 0.86rem;
+      color: var(--muted);
+      max-width: 32rem;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+
+    .card {
+      background: linear-gradient(145deg, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 0.96));
+      border-radius: var(--radius-lg);
+      padding: 1.15rem;
+      border: 1px solid rgba(31, 41, 55, 0.95);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .about-text {
+      font-size: 0.9rem;
+      color: #d1d5db;
+      margin-bottom: 0.8rem;
+    }
+
+    .about-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.5rem 1rem;
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+
+    .about-list span {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      font-size: 0.78rem;
+    }
+
+    .chip {
+      padding: 0.16rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px dashed rgba(55, 65, 81, 0.9);
+      color: var(--muted);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.1rem;
+    }
+
+    .project-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.98));
+      border: 1px solid rgba(31, 41, 55, 0.96);
+      padding: 0.9rem 0.9rem 1rem;
+      box-shadow: var(--shadow-soft);
+      transition: transform var(--transition-med), box-shadow var(--transition-med), border-color var(--transition-med);
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(99, 102, 241, 0.9);
+      box-shadow: 0 22px 60px rgba(15, 23, 42, 0.95);
+    }
+
+    .project-tagline {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .project-title {
+      font-size: 0.96rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .project-tech {
+      font-size: 0.74rem;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .project-body {
+      font-size: 0.78rem;
+      color: #d1d5db;
+      margin-bottom: 0.45rem;
+    }
+
+    .project-list {
+      list-style: none;
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .project-list li {
+      margin-bottom: 0.18rem;
+    }
+
+    .project-list li::before {
+      content: "•";
+      color: #6366f1;
+      margin-right: 0.3rem;
+    }
+
+    .project-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.45rem;
+      margin-top: 0.4rem;
+    }
+
+    .link-pill {
+      font-size: 0.76rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: rgba(15, 23, 42, 0.96);
+      color: #e5e7eb;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.28rem;
+      transition: background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .link-pill:hover {
+      border-color: #6366f1;
+      color: #e5e7eb;
+      transform: translateY(-1px);
+    }
+
+    .stack-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+
+    .stack-badge {
+      padding: 0.12rem 0.5rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .skills-title {
+      font-size: 0.86rem;
+      font-weight: 500;
+      margin-bottom: 0.35rem;
+    }
+
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      font-size: 0.78rem;
+    }
+
+    .skills-item {
+      padding: 0.16rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: rgba(15, 23, 42, 0.96);
+      color: #d1d5db;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 1.5rem;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 0.65rem;
+      font-size: 0.86rem;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.22rem;
+    }
+
+    .field label {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .input,
+    .textarea {
+      padding: 0.5rem 0.6rem;
+      border-radius: 10px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: rgba(15, 23, 42, 0.96);
+      color: #e5e7eb;
+      font-size: 0.86rem;
+      outline: none;
+      transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+    }
+
+    .input:focus,
+    .textarea:focus {
+      border-color: #6366f1;
+      box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.4);
+      background: rgba(15, 23, 42, 0.98);
+    }
+
+    .textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .contact-meta {
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+
+    .contact-meta p {
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      margin-top: 0.5rem;
+    }
+
+    .contact-link {
+      font-size: 0.82rem;
+      color: #e5e7eb;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.2rem 0.4rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      width: fit-content;
+      transition: border-color var(--transition-fast), transform var(--transition-fast), color var(--transition-fast);
+    }
+
+    .contact-link span.icon {
+      font-size: 0.9rem;
+    }
+
+    .contact-link:hover {
+      border-color: #6366f1;
+      transform: translateY(-1px);
+      color: #e5e7eb;
+    }
+
+    .footer {
+      padding: 1.2rem 0 1.4rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-align: center;
+      border-top: 1px solid rgba(15, 23, 42, 0.96);
+      margin-top: 2.2rem;
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid {
+        grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.1fr);
+      }
+
+      .projects-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar-inner {
+        padding: 0.75rem 0;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 56px;
+        right: 1.25rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+        padding: 0.8rem 1rem;
+        background: rgba(15, 23, 42, 0.98);
+        border-radius: 16px;
+        border: 1px solid rgba(31, 41, 55, 0.96);
+        box-shadow: 0 18px 45px rgba(15, 23, 42, 0.98);
+        min-width: 180px;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-toggle {
+        display: inline-flex;
+      }
+
+      .hero {
+        padding-top: 2.4rem;
+      }
+
+      .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-panel {
+        order: -1;
+      }
+
+      .about-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .projects-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .skills-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .footer {
+        margin-top: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- Navbar -->
+    <header class="navbar">
+      <div class="container navbar-inner">
+        <a href="#top" class="logo">
+          <div class="logo-mark">S</div>
+          <div class="logo-text">
+            <span class="logo-name">SUBESH KUMAR N</span>
+            <span class="logo-role">Software Developer</span>
+          </div>
+        </a>
+        <nav>
+          <button class="nav-toggle" aria-label="Toggle navigation" onclick="toggleNav()">
+            ☰
+          </button>
+          <div class="nav-links" id="navLinks">
+            <a href="#projects" class="nav-link">Projects</a>
+            <a href="#skills" class="nav-link">Skills</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#contact" class="nav-link">Contact</a>
+            <a href="SUBESHKUMAR_N.pdf" class="nav-cta">Download CV</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- Hero -->
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <div class="eyebrow">
+              <span class="eyebrow-dot"></span>
+              B.Sc Computer Science • Backend Focus
+            </div>
+            <h1 class="hero-title">
+              Building reliable Java‑based <span>backend</span> solutions.
+            </h1>
+            <p class="hero-subtitle">
+              Software Developer with strong Java backend, OOP, and database skills, eager to contribute to dynamic software projects and grow as a backend / full‑stack developer in a collaborative environment.
+            </p>
+            <div class="hero-badges">
+              <span class="badge">Java • JDBC • Servlets</span>
+              <span class="badge">Spring Boot</span>
+              <span class="badge">MySQL • Database Management</span>
+              <span class="badge badge-ghost">Problem Solving • Team Collaboration</span>
+            </div>
+            <div class="hero-actions">
+              <a href="#projects" class="btn btn-primary">
+                <span>View Projects</span>
+                <span class="icon">↗</span>
+              </a>
+              <a href="https://github.com/Subesh-N" target="_blank" class="btn btn-outline">
+                <span>GitHub</span>
+                <span class="icon">🌐</span>
+              </a>
+              <a href="https://www.linkedin.com/in/subesh-kumar-13b571292/" target="_blank" class="btn btn-outline">
+                <span>LinkedIn</span>
+                <span class="icon">in</span>
+              </a>
+            </div>
+          </div>
+
+          <aside class="hero-panel">
+            <div class="hero-panel-inner">
+              <div class="pill-row">
+                <span>Coimbatore, Tamil Nadu, India</span>
+                <span>+91 85248 62464</span>
+              </div>
+              <div class="highlight-card">
+                <div class="highlight-title">Software Developer</div>
+                <div class="highlight-sub">
+                  Focused on core Java, JDBC, Servlets, and database‑driven applications with clean OOP design.
+                </div>
+                <div class="highlight-tags">
+                  <span class="tag">Java</span>
+                  <span class="tag">OOP</span>
+                  <span class="tag">JDBC</span>
+                  <span class="tag">MySQL</span>
+                </div>
+              </div>
+              <div class="highlight-card">
+                <div class="highlight-title">Growing in Spring Boot</div>
+                <div class="highlight-sub">
+                  Basics of Spring Boot and full stack development, actively building projects and improving skills.
+                </div>
+                <div class="highlight-tags">
+                  <span class="tag">Spring Boot</span>
+                  <span class="tag">HTML • CSS • JS(Basics)</span>
+                  <span class="tag">Git</span>
+                </div>
+              </div>
+              <div class="hero-stats">
+                <div class="stat-box">
+                  <div class="stat-number">2+ Projects</div>
+                  <div class="stat-label">Java & MySQL applications</div>
+                </div>
+                <div class="stat-box">
+                  <div class="stat-number">3+ Years</div>
+                  <div class="stat-label">Academic CS foundation</div>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section id="projects">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-eyebrow">Projects</div>
+            <h2 class="section-title">Academic & personal work</h2>
+            <p class="section-subtitle">
+              Projects that demonstrate Java programming, database integration, and application of object‑oriented principles.
+            </p>
+          </div>
+
+          <div class="projects-grid">
+            <!-- Project 1 -->
+            <article class="project-card">
+              <div class="project-tagline">Java • MySQL</div>
+              <h3 class="project-title">Online Employee Management System</h3>
+              <div class="project-tech">Java, JDBC, MySQL</div>
+              <p class="project-body">
+                Desktop application to manage employee records with CRUD operations and persistent storage using MySQL.
+              </p>
+              <ul class="project-list">
+                <li>Developed a Java‑based system to add, update, delete, and view employee details using JDBC.</li>
+                <li>Designed and connected MySQL database tables for storing employee information securely.</li>
+          
+              </ul>
+              <div class="project-footer">
+                <div class="stack-badges">
+                  <span class="stack-badge">Core Java</span>
+                  <span class="stack-badge">JDBC</span>
+                  <span class="stack-badge">MySQL</span>
+                </div>
+                <div>
+                  <a href="https://github.com/Subesh-N" target="_blank" class="link-pill">
+                    <span>View on GitHub</span><span>↗</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Project 2 -->
+            <article class="project-card">
+              <div class="project-tagline">Java • OOP</div>
+              <h3 class="project-title">Student Result Processing System</h3>
+              <div class="project-tech">Java (Console), OOP</div>
+              <p class="project-body">
+                Console application to compute and display student grades with a focus on clean object‑oriented design.
+              </p>
+              <ul class="project-list">
+                <li>Implemented features to input marks, calculate totals, and derive grades for students.</li>
+                <li>Used inheritance and polymorphism to structure student and result logic clearly.</li>
+                <li>Practiced core OOP concepts by separating responsibilities into meaningful classes.</li>
+              </ul>
+              <div class="project-footer">
+                <div class="stack-badges">
+                  <span class="stack-badge">Core Java</span>
+                  <span class="stack-badge">OOP</span>
+                </div>
+                <div>
+                  <a href="https://github.com/Subesh-N" target="_blank" class="link-pill">
+                    <span>View on GitHub</span><span>↗</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Placeholder project (for future Spring Boot/full stack app) -->
+            <article class="project-card">
+              <div class="project-tagline">Spring Boot</div>
+              <h3 class="project-title">Appointment Management System</h3>
+              <div class="project-tech">Java, Spring Boot, MySQL, HTML, CSS, JavaScript</div>
+              <p class="project-body">
+                A full-stack appointment booking system that allows users to book, view, update, and cancel appointments online. Designed for clinics, offices, and service centers with secure backend operations.
+              </p>
+              <ul class="project-list">
+                <li>Developed RESTful APIs using Spring Boot for handling appointments and user data.</li>
+                <li>Implemented role-based access for Admin and Users.</li>
+                <li>Integrated MySQL database for storing appointments, users, and schedules.</li>
+                <li>Includes appointment status tracking and time-slot management.</li>
+              </ul>
+              <div class="project-footer">
+                <div class="stack-badges">
+                  <span class="stack-badge">Spring Boot</span>
+                  <span class="stack-badge">REST API</span>
+                  <span class="stack-badge">MySQL</span>
+                  <span class="stack-badge">Authentication</span>
+                </div>
+                <div>
+                  <a class="link-pill" href="#" target="_blank">
+                    <span>View on github</span>
+                  </a>
+                </div>
+              </div>
+            </article>
+            
+                  </span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills -->
+      <section id="skills">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-eyebrow">Skills</div>
+            <h2 class="section-title">Technologies & tools</h2>
+            <p class="section-subtitle">
+              Technical stack and soft skills built through academic work, projects, and certifications.
+            </p>
+          </div>
+
+          <div class="skills-grid">
+            <div class="card">
+              <div class="skills-title">Programming Languages</div>
+              <div class="skills-list">
+                <span class="skills-item">Java</span>
+                <span class="skills-item">C++</span>
+                <span class="skills-item">HTML</span>
+                <span class="skills-item">CSS</span>
+                <span class="skills-item">JavaScript</span>
+                <span class="skills-item">SQL</span>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="skills-title">Backend & Databases</div>
+              <div class="skills-list">
+                <span class="skills-item">Core Java</span>
+                <span class="skills-item">JDBC</span>
+                <span class="skills-item">Servlets</span>
+                <span class="skills-item">Basics of Spring Boot</span>
+                <span class="skills-item">MySQL</span>
+                <span class="skills-item">Database Management</span>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="skills-title">Tools & Soft Skills</div>
+              <div class="skills-list">
+                <span class="skills-item">Git</span>
+                <span class="skills-item">MySQL Workbench</span>
+                <span class="skills-item">Eclipse</span>
+                <span class="skills-item">IntelliJ IDEA</span>
+                <span class="skills-item">VS Code</span>
+                <span class="skills-item">Problem Solving</span>
+                <span class="skills-item">Communication</span>
+                <span class="skills-item">Team Collaboration</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About / Education / Certifications / Achievements -->
+      <section id="about">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-eyebrow">About</div>
+            <h2 class="section-title">Background & achievements</h2>
+          </div>
+
+          <div class="about-grid">
+            <div class="card">
+              <p class="about-text">
+                B.Sc Computer Science graduate from Kathir College of Arts and Science, Coimbatore (2022–2025), with a strong foundation in Java backend development, object‑oriented programming, and database management.
+              </p>
+              <p class="about-text">
+                Enjoys backend development, software engineering, REST API development, and database design, and is eager to grow further in Java backend and full‑stack roles.
+              </p>
+              <ul class="about-list">
+                <li><span>Location:</span> Coimbatore, Tamil Nadu, India</li>
+                <li><span>Phone:</span> +91 85248 62464</li>
+                <li><span>Email:</span> programmersubesh@gmail.com</li>
+                <li><span>GitHub:</span> github.com/Subesh-N</li>
+                <li><span>LinkedIn:</span> subesh-kumar</li>
+                <li><span>Interests:</span> Backend Dev, REST APIs, DB Design</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <div class="skills-title">Education</div>
+              <div class="chips" style="margin-top: 0.35rem; margin-bottom: 0.7rem;">
+                <span class="chip">B.Sc Computer Science – Kathir College of Arts and Science, Coimbatore (2022–2025)</span>
+                <span class="chip">HSC – Chinnasamy Ammal Boys Higher Secondary School, Tirupur (2020–2022), 70%</span>
+              </div>
+
+              <div class="skills-title">Certifications</div>
+              <div class="chips" style="margin-top: 0.35rem; margin-bottom: 0.7rem;">
+                <span class="chip">Java Programming (Basic) – HackerRank, 2024</span>
+                <span class="chip">Full Stack Development Workshop – Novitech, 2023</span>
+                <span class="chip">Python for Data Science – NPTEL, 2022</span>
+              </div>
+
+              <div class="skills-title">Achievements</div>
+              <div class="chips" style="margin-top: 0.35rem;">
+                <span class="chip">Intercollege Debugging Competition – 3rd Prize, Hindustan College of Arts and Science (2025)</span>
+                <span class="chip">Intercollege Chess Champion – Winner for 3 Consecutive Years, Kathir College of Arts and Science (2022–2025)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-eyebrow">Contact</div>
+            <h2 class="section-title">Let’s connect</h2>
+            <p class="section-subtitle">
+              Open to backend or full‑stack Java roles, internships, and entry‑level opportunities.
+            </p>
+          </div>
+
+          <div class="contact-grid">
+            <div class="card">
+              <form class="contact-form" onsubmit="handleSubmit(event)">
+                <div class="field">
+                  <label for="name">Name</label>
+                  <input id="name" class="input" type="text" placeholder="Your name" required />
+                </div>
+                <div class="field">
+                  <label for="email">Email</label>
+                  <input id="email" class="input" type="email" placeholder="you@example.com" required />
+                </div>
+                <div class="field">
+                  <label for="message">Message</label>
+                  <textarea id="message" class="textarea" placeholder="Tell me about the opportunity or project..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: fit-content;">
+                  <span>Send Message</span>
+                  <span class="icon">✉</span>
+                </button>
+                <small style="font-size: 0.75rem; color: var(--muted);">
+                </small>
+              </form>
+            </div>
+
+            <div class="card">
+              <div class="contact-meta">
+                <p>
+                  Prefer direct contact? Use any of the channels below.
+                </p>
+                <div class="contact-links">
+                  <a href="mailto:programmersubesh@gmail.com" class="contact-link">
+                    <span class="icon">✉</span>
+                    <span>programmersubesh@gmail.com</span>
+                  </a>
+                  <a href="https://www.linkedin.com/in/subesh-kumar-13b571292/" target="_blank" class="contact-link">
+                    <span class="icon">in</span>
+                    <span>LinkedIn</span>
+                  </a>
+                  <a href="https://github.com/Subesh-N" target="_blank" class="contact-link">
+                    <span class="icon">🌐</span>
+                    <span>GitHub</span>
+                  </a>
+                  <span class="contact-link" style="cursor:default;">
+                    <span class="icon">📍</span>
+                    <span>Coimbatore, Tamil Nadu, India</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      © <span id="year"></span> SUBESH KUMAR N · Java Backend & Full Stack Developer
+    </footer>
+  </div>
+
+  <script>
+    function toggleNav() {
+      const nav = document.getElementById("navLinks");
+      nav.classList.toggle("open");
+    }
+
+    function handleSubmit(e) {
+      e.preventDefault();
+      alert("Form is static in this demo. Connect it to Formspree / Netlify Forms to receive messages.");
+    }
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
