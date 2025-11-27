@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SUBESH KUMAR N | Software Developer</title>
   <style>
-    /* === THEME & RESET (same as before) === */
+    /* === THEME & RESET === */
     :root {
       --bg: #050816;
       --bg-alt: #0b1020;
@@ -53,6 +53,7 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      padding-top: 64px; /* Space for fixed navbar */
     }
 
     .container {
@@ -62,10 +63,12 @@
       padding: 0 1.25rem;
     }
 
-    /* Navbar */
+    /* Navbar - FIXED */
     .navbar {
-      position: sticky;
+      position: fixed;
       top: 0;
+      left: 0;
+      right: 0;
       z-index: 40;
       backdrop-filter: blur(18px);
       background: linear-gradient(to bottom, rgba(5, 8, 22, 0.96), rgba(5, 8, 22, 0.8));
@@ -626,47 +629,6 @@
       gap: 1.5rem;
     }
 
-    .contact-form {
-      display: grid;
-      gap: 0.65rem;
-      font-size: 0.86rem;
-    }
-
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: 0.22rem;
-    }
-
-    .field label {
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    .input,
-    .textarea {
-      padding: 0.5rem 0.6rem;
-      border-radius: 10px;
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      background: rgba(15, 23, 42, 0.96);
-      color: #e5e7eb;
-      font-size: 0.86rem;
-      outline: none;
-      transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
-    }
-
-    .input:focus,
-    .textarea:focus {
-      border-color: #6366f1;
-      box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.4);
-      background: rgba(15, 23, 42, 0.98);
-    }
-
-    .textarea {
-      min-height: 120px;
-      resize: vertical;
-    }
-
     .contact-meta {
       font-size: 0.86rem;
       color: var(--muted);
@@ -764,11 +726,16 @@
       }
 
       .hero-grid {
-        grid-template-columns: minmax(0, 1fr);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .hero-grid > div:first-child {
+        order: 1; /* Text content stays first */
       }
 
       .hero-panel {
-        order: -1;
+        order: 2; /* Card appears second */
       }
 
       .about-grid {
@@ -924,7 +891,6 @@
               <ul class="project-list">
                 <li>Developed a Java‑based system to add, update, delete, and view employee details using JDBC.</li>
                 <li>Designed and connected MySQL database tables for storing employee information securely.</li>
-          
               </ul>
               <div class="project-footer">
                 <div class="stack-badges">
@@ -966,7 +932,7 @@
               </div>
             </article>
 
-            <!-- Placeholder project (for future Spring Boot/full stack app) -->
+            <!-- Project 3 -->
             <article class="project-card">
               <div class="project-tagline">Spring Boot</div>
               <h3 class="project-title">Appointment Management System</h3>
@@ -988,14 +954,9 @@
                   <span class="stack-badge">Authentication</span>
                 </div>
                 <div>
-                  <a class="link-pill" href="#" target="_blank">
-                    <span>View on github</span>
+                  <a class="link-pill" href="https://github.com/Subesh-N" target="_blank">
+                    <span>View on GitHub</span><span>↗</span>
                   </a>
-                </div>
-              </div>
-            </article>
-            
-                  </span>
                 </div>
               </div>
             </article>
@@ -1111,7 +1072,7 @@
         <div class="container">
           <div class="section-header">
             <div class="section-eyebrow">Contact</div>
-            <h2 class="section-title">Let’s connect</h2>
+            <h2 class="section-title">Let's connect</h2>
             <p class="section-subtitle">
               Open to backend or full‑stack Java roles, internships, and entry‑level opportunities.
             </p>
@@ -1119,26 +1080,17 @@
 
           <div class="contact-grid">
             <div class="card">
-              <form class="contact-form" onsubmit="handleSubmit(event)">
-                <div class="field">
-                  <label for="name">Name</label>
-                  <input id="name" class="input" type="text" placeholder="Your name" required />
-                </div>
-                <div class="field">
-                  <label for="email">Email</label>
-                  <input id="email" class="input" type="email" placeholder="you@example.com" required />
-                </div>
-                <div class="field">
-                  <label for="message">Message</label>
-                  <textarea id="message" class="textarea" placeholder="Tell me about the opportunity or project..." required></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary" style="width: fit-content;">
-                  <span>Send Message</span>
-                  <span class="icon">✉</span>
-                </button>
-                <small style="font-size: 0.75rem; color: var(--muted);">
-                </small>
-              </form>
+              <div class="contact-meta">
+                <p>
+                  For opportunities, collaborations, or interview discussions, please reach out using the channels provided.
+                </p>
+                <p style="margin-top: 1rem;">
+                  Actively looking for Java backend / full-stack roles in Coimbatore, Tiruppur, and nearby cities.
+                </p>
+                <p style="margin-top: 1rem; font-size: 0.82rem; color: #d1d5db;">
+                  Available for immediate joining and excited to contribute to meaningful projects with strong technical teams.
+                </p>
+              </div>
             </div>
 
             <div class="card">
@@ -1180,11 +1132,6 @@
     function toggleNav() {
       const nav = document.getElementById("navLinks");
       nav.classList.toggle("open");
-    }
-
-    function handleSubmit(e) {
-      e.preventDefault();
-      alert("Form is static in this demo. Connect it to Formspree / Netlify Forms to receive messages.");
     }
 
     document.getElementById("year").textContent = new Date().getFullYear();
